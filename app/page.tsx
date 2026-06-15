@@ -1,65 +1,102 @@
+"use client"
+
+
+import AboutMeComponent from "@/components/AboutMeComponent";
+import ContactInfoComponent from "@/components/ContactInfoComponent";
+import ProjectsInfoComponent from "@/components/ProjectsInfoComponent";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    
+    const [isVisible, setVisible] = useState(false)
+
+    const [AboutMeInfo, setAboutMeInfo] = useState(true)
+
+    const [ContactInfo, setConatctInfo] = useState(false)
+
+    const [ProjectsInfo, setProjectsInfo] = useState(false)
+
+    const AboutMeClick = ()=>{
+        setAboutMeInfo(true)
+        setConatctInfo(false)
+        setProjectsInfo(false)    
+    }
+
+    const ContactMeClick = ()=>{
+        setAboutMeInfo(false)
+        setConatctInfo(true)
+        setProjectsInfo(false)
+        
+    }
+
+    const ProjectsClick = ()=>{
+        setAboutMeInfo(false)
+        setConatctInfo(false)
+        setProjectsInfo(true)
+        
+    }
+
+    
+
+    return (
+        <>
+        
+        
+            <div className="h-screen w-screen bg-[#051923]">
+                <div className="h-screen w-screen grid lg:grid-cols-[80px_auto_80px] grid-cols-[20px_auto_20px] bg-[url('/newFerret.jpg')] bg-cover bg-center bg-no-repeat]">
+                <div></div>
+                <div className="grid grid-rows-[80px_auto_80px]">
+                    <div></div>
+                    <div>
+                    <h1 className="md:text-4xl sm:text-3xl text-2xl text-[#F4F7F5] font-monocraft lg:mt-75 md:mt-50 sm:mt-50 mt-55 ml-4">I know exactly who you have been looking for.</h1>
+                    <h2 className=" md:text-2xl sm:text-[20px] text-[18px] text-[#F4F7F5] mt-5 ml-4">Believe me, I am worth the wait.</h2>
+                    <button className="lg:text-2xl md:text-[18px] text-[#F4F7F5] lg:mt-5 lg:ml-3 md:mt-3.5 md:ml-3 sm:mt-3 sm:ml-3 mt-5 ml-3 rounded-2xl bg-[#666A86] hover:bg-[#0d3f58] active:bg-[#58585e] border-2 border-[#777777] hover:border-[#F4F7F5] transition-colors duration-300 delay-50 lg:p-3 md:p-3 sm:p-2 p-1 cursor-pointer" onClick={()=>setVisible(!isVisible)}>Come see for yourself.</button>
+                    </div>
+                    <div></div>
+                </div>
+                <div></div>
+                </div>
+            </div>
+
+            
+            <div 
+                className={`absolute inset-0 z-50 h-screen w-screen backdrop-blur-md grid place-content-center from-transparent to-white/10 duration-600 transition-opacity ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} 
+            >           
+                <div className="bg-[#666A86] border-2 border-[#58585e] sm:h-135 h-160 lg:w-300 md:w-200 sm:w-160 rounded-2xl  grid sm:grid-cols-[80px_auto] grid-cols-[50px_auto] ml-2 mr-2">
+                <div className="grid grid-rows-3">    
+                    <button className={`rounded-tl-[14px] p-3 pl-3 pr-3  grid place-content-center cursor-pointer ${AboutMeInfo ? 'bg-[#414147] transition-colors duration-300 delay-50 border-r-2 border-[#F4F7F5]': 'bg-[#666A86] hover:bg-[#0d3f58] border-r-2 border-[#414147] transition-colors duration-300 delay-50'}`} onClick={AboutMeClick}><Image src={"/profile.png"} alt="githubSVG" height={20} width={20}></Image></button>                              
+                    <button className={`p-3 pl-3 pr-3 grid place-content-center cursor-pointer ${ProjectsInfo ? 'bg-[#414147] transition-colors duration-300 delay-50  border-r-2 border-[#F4F7F5]' : 'bg-[#666A86] hover:bg-[#0d3f58] border-r-2 border-[#414147] transition-colors duration-300 delay-50'}`} onClick={ProjectsClick}><Image src={"/graduation-hat.png"} alt="githubSVG" height={20} width={20}></Image></button>            
+                    <button className={`rounded-bl-[14px] grid place-content-center cursor-pointer ${ContactInfo ? 'bg-[#414147] transition-colors duration-300 delay-50  border-r-2 border-[#F4F7F5]' : 'bg-[#666A86] hover:bg-[#0d3f58] border-r-2 border-[#414147] transition-colors duration-300 delay-50'}`} onClick={ContactMeClick} ><Image src={"/chat.png"} alt="githubSVG" height={20} width={20}></Image></button>                  
+                </div>
+                <div className=" grid sm:grid-rows-[50px_auto] grid-rows-[45px_auto] h-full overflow-hidden rounded-br-2xl">
+                    <div className="bg-[#58585e]  rounded-tr-2xl grid grid-cols-[auto_80px]">
+                        <div></div>
+                        <div className=" grid place-items-center rounded-tr-2xl">
+                            <button className="bg-[#666A86] hover:bg-[#0d3f58] hover:text-[#F4F7F5] active:bg-[#58585e] border-2 border-[#414147] hover:border-[#F4F7F5] transition-colors duration-300 delay-50 p-2 pl-6 pr-6 rounded-2xl cursor-pointer" onClick={()=>setVisible(!isVisible)}>X</button>
+                        </div>
+                    </div>
+                    
+                    
+                    {AboutMeInfo==true && (
+                        <AboutMeComponent/>
+                    )}
+                                                                                                  
+                    {ProjectsInfo==true && (
+                        <ProjectsInfoComponent/>
+                    )}
+
+                    {ContactInfo==true && (
+                        <ContactInfoComponent/>
+                    )}
+
+                </div>
+                </div>
+            </div>
+        
+        
+        
+        </>
+    );
 }
